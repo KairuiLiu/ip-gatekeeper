@@ -1,8 +1,7 @@
 import '@src/Popup.css';
-import { useStorage, withErrorBoundary, withSuspense } from '@extension/shared';
-import { exampleThemeStorage } from '@extension/storage';
+import { withErrorBoundary, withSuspense } from '@extension/shared';
 import { t } from '@extension/i18n';
-import { ToggleButton } from '@extension/ui';
+import { Button } from '@extension/ui';
 
 const notificationOptions = {
   type: 'basic',
@@ -12,8 +11,7 @@ const notificationOptions = {
 } as const;
 
 const Popup = () => {
-  const theme = useStorage(exampleThemeStorage);
-  const isLight = theme === 'light';
+  const isLight = true;
   const logo = isLight ? 'popup/logo_vertical.svg' : 'popup/logo_vertical_dark.svg';
   const goGithubSite = () =>
     chrome.tabs.create({ url: 'https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite' });
@@ -55,7 +53,7 @@ const Popup = () => {
           onClick={injectContentScript}>
           Click to inject Content Script
         </button>
-        <ToggleButton>{t('toggleTheme')}</ToggleButton>
+        <Button>{t('toggleTheme')}</Button>
       </header>
     </div>
   );
