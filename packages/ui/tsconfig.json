@@ -8,5 +8,6 @@
     },
     "noEmit": false,
     "declaration": true
-  }
+  },
+  "include": ["index.ts", "lib"]
 }
