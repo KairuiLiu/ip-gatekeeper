@@ -4,8 +4,8 @@
     "message": "Chrome extension boilerplate developed with Vite, React and Typescript"
   },
   "extensionName": {
-    "description": "IP Gatekeeper",
-    "message": "Chrome extension boilerplate"
+    "description": "Extension name",
+    "message": "IP Gatekeeper"
   },
   "toggleTheme": {
     "message": "Toggle theme"

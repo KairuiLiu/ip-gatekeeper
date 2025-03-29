@@ -63,6 +63,10 @@ const manifest = {
       resources: ['*.js', '*.css', '*.svg', 'icon-128.png', 'icon-34.png'],
       matches: ['*://*/*'],
     },
+    {
+      resources: ['/redirect/index.html', '/redirect/redirect.js'],
+      matches: ['<all_urls>'],
+    },
   ],
 } satisfies chrome.runtime.ManifestV3;
 

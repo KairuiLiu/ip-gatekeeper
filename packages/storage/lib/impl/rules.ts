@@ -2,22 +2,23 @@ import type { BaseStorage } from '../base/index.js';
 import { createStorage, StorageEnum } from '../base/index.js';
 import { v4 } from 'uuid';
 
-type Rule = {
+export type Rule = {
   id: string;
   enable: boolean;
   urlRegex: string;
   countryCodeRegex: string;
-  checkIpBeforeVisit: boolean;
-  checkIpOnVisit: boolean;
+  checkBeforeVisit: boolean;
+  checkOnVisit: boolean;
 };
 
-type Rules = Rule[];
+export type Rules = Rule[];
 
 type RuleStorage = BaseStorage<Rules> & {
   toggleEnabled: (id: string) => Promise<boolean>;
-  addRule: (rule: Rule) => Promise<boolean>;
+  addRule: (rule: Omit<Rule, 'id'>) => Promise<boolean>;
   removeRule: (id: string) => Promise<boolean>;
   updateRule: (id: string, rule: Rule) => Promise<boolean>;
+  clearRules: () => Promise<boolean>;
 };
 
 const storage = createStorage<Rules>('rules', [], {
@@ -54,6 +55,10 @@ export const ruleStorage: RuleStorage = {
         return r.id === id ? rule : r;
       });
     });
+    return true;
+  },
+  clearRules: async () => {
+    await storage.set([]);
     return true;
   },
 };

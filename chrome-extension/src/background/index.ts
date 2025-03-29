@@ -1,8 +1,7 @@
 import 'webextension-polyfill';
+import _ from './rules';
+import __ from './events';
 
-// exampleThemeStorage.get().then(theme => {
-//   console.log('theme', theme);
-// });
-
-console.log('Background loaded');
-console.log("Edit 'chrome-extension/src/background/index.ts' and save to reload.");
+if ([_, __].includes('__KEEP__')) {
+  console.log('WTF VITE');
+}
