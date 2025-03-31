@@ -19,6 +19,7 @@ export async function refreshIpInfo() {
       checkTime: Date.now(),
     });
   }
+  return true;
 }
 
 async function fetchIpInfo() {

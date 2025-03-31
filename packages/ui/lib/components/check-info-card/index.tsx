@@ -5,7 +5,7 @@ import type { FC } from 'react';
 type Props = {
   status: CheckResult;
   ipInfo: IpInfo;
-  blockRule: Rule;
+  blockRule?: Rule;
 };
 
 const statusTextMap = {
@@ -21,14 +21,14 @@ export const CheckInfoCard: FC<Props> = ({ status, ipInfo, blockRule }) => {
       <div>{statusTextMap[status]}</div>
       {(status === CheckResult.PASS || status === CheckResult.BLOCKED) && (
         <>
-          <div>IP: {ipInfo.ip}</div>
-          <div>位置: {ipInfo.country}</div>
-          <div>更新时间: {ipInfo.checkTime}</div>
+          <div>
+            位置: {ipInfo.country} ({ipInfo.ip})
+          </div>
         </>
       )}
-      {status === CheckResult.BLOCKED && (
+      {status === CheckResult.BLOCKED && blockRule && (
         <>
-          <div>阻止原因: 匹配到了 {blockRule.urlRegex}</div>
+          <div>规发生大范德萨范德萨发则: {blockRule.urlRegex}</div>
         </>
       )}
     </section>

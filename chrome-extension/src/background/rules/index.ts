@@ -25,7 +25,7 @@ async function updateRules() {
             action: {
               type: chrome.declarativeNetRequest.RuleActionType.REDIRECT,
               redirect: {
-                regexSubstitution: chrome.runtime.getURL('/redirect/index.html') + '#\\0',
+                regexSubstitution: chrome.runtime.getURL('/redirect/index.html#\\0'),
               },
             },
             condition: {
@@ -55,8 +55,8 @@ chrome.runtime.onInstalled.addListener(async () => {
   await ruleStorage.clearRules();
   await ruleStorage.addRule({
     enable: true,
-    urlRegex: 'https://example\\.com',
-    countryCodeRegex: 'CN',
+    urlRegex: '^http[s]://claude.ai',
+    countryCodeRegex: 'JP',
     checkBeforeVisit: true,
     checkOnVisit: true,
   });

@@ -26,7 +26,7 @@ export const CheckStatusIcon: FC<Props> = ({ status, showBackground }) => {
   const color = statueColorMap[status];
   return (
     <div
-      className={`flex items-center justify-center rounded-full w-16 h-16 ${showBackground ? color.background : ''}`}>
+      className={`flex shrink-0 items-center justify-center rounded-full w-16 h-16 ${showBackground ? color.background : ''}`}>
       <Component className={color.front} size={36} />
     </div>
   );

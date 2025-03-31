@@ -17,17 +17,18 @@ import {
   CardTitle,
   CheckStatusIcon,
   CheckInfoCard,
+  CardDescription,
 } from '@extension/ui';
 import { t } from '@extension/i18n';
 import type { Rule } from '@extension/storage';
-import { IpInfoStatue, ipInfoStorage, ruleStorage } from '@extension/storage';
+import { ipInfoStorage, ruleStorage } from '@extension/storage';
 import { useEffect, useRef, useState } from 'react';
 
 const Redirect = () => {
   const loadTime = useRef(Date.now());
   const ipInfo = useStorage(ipInfoStorage);
   const rules = useStorage(ruleStorage);
-  const queryLocation = new URLSearchParams(window.location.search).get('location');
+  const targetLocation = decodeURIComponent(location.hash.slice(1));
 
   // IP 检查结果. 通过, 阻止, 等待, 失败
   const [checkResult, setCheckResult] = useState(CheckResult.PENDING);
@@ -35,12 +36,12 @@ const Redirect = () => {
   const [blockRule, setBlockRule] = useState<Rule>();
 
   useEffect(() => {
-    if (!queryLocation) return;
-    const checkResult = checkIpInfo(queryLocation, loadTime.current, ipInfo, rules);
+    if (!targetLocation) return;
+    const checkResult = checkIpInfo(targetLocation, loadTime.current, ipInfo, rules);
 
     setCheckResult(checkResult);
-    setBlockRule(checkResult === CheckResult.BLOCKED ? getBlockRule(queryLocation, ipInfo, rules) : undefined);
-  }, [ipInfo, rules, queryLocation]);
+    setBlockRule(checkResult === CheckResult.BLOCKED ? getBlockRule(targetLocation, ipInfo, rules) : undefined);
+  }, [ipInfo, rules, targetLocation]);
 
   const requestCheckIpInfo = () => {
     chrome.runtime.sendMessage({ action: BackgroundRequestAction.REFRESH_IP_INFO });
@@ -48,6 +49,14 @@ const Redirect = () => {
 
   const handleClose = () => {
     window.close();
+  };
+
+  const handleVisit = async () => {
+    const response = await chrome.runtime.sendMessage({
+      action: BackgroundRequestAction.ADD_SESSION_ACCESS_RULE,
+      rules: [blockRule],
+    });
+    if (response) location.href = targetLocation;
   };
 
   // 首次加载时, 立即触发一次检查
@@ -60,6 +69,7 @@ const Redirect = () => {
       <Card className="w-[350px]  ">
         <CardHeader>
           <CardTitle>{t('extensionName')} 安全检查</CardTitle>
+          <CardDescription>请求 {targetLocation} 触发安全检查</CardDescription>
         </CardHeader>
         <CardContent className="flex gap">
           <CheckStatusIcon status={checkResult} showBackground={true} />
@@ -75,7 +85,11 @@ const Redirect = () => {
               重新检查
             </Button>
           )}
-          {checkResult !== CheckResult.PASS && <Button variant="destructive">无视风险, 访问页面</Button>}
+          {checkResult !== CheckResult.PASS && (
+            <Button variant="destructive" onClick={handleVisit}>
+              无视风险, 访问页面
+            </Button>
+          )}
         </CardFooter>
       </Card>
     </main>
