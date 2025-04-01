@@ -13,7 +13,7 @@ const Popup = () => {
 
   return (
     <div className="absolute top-0 bottom-0 left-0 right-0 text-center h-full p-4 flex flex-col items-center justify-center gap-2">
-      <h1 className="text-lg">IP GateKeeper</h1>
+      <h1 className="text-lg">{t('extensionName')}</h1>
       <img src={chrome.runtime.getURL('popup/logo_512.png')} alt="logo" className="size-36" />
       <p>
         {t('currentRulesCount', enabledRules.length)}
