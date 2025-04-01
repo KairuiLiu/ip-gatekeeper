@@ -144,7 +144,7 @@ export const RulesTable = () => {
       <section className="w-full flex justify-between mt-4 ">
         <div>
           <Button onClick={addRule} variant="outline">
-            新增一行
+            新增一条
           </Button>
         </div>
         <div className="flex gap-2">

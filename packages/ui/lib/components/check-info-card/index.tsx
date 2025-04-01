@@ -9,26 +9,26 @@ type Props = {
 };
 
 const statusTextMap = {
-  [CheckResult.PENDING]: '检查中',
-  [CheckResult.PASS]: '通过',
-  [CheckResult.BLOCKED]: '阻止',
-  [CheckResult.FAILED]: '失败',
+  [CheckResult.PENDING]: '检查中...',
+  [CheckResult.PASS]: '检查通过',
+  [CheckResult.BLOCKED]: '禁止访问',
+  [CheckResult.FAILED]: '检查失败',
 };
 
 export const CheckInfoCard: FC<Props> = ({ status, ipInfo, blockRule }) => {
   return (
-    <section className="flex flex-col gap-2">
+    <section className="flex flex-col gap-2 item-left text-left w-full">
       <div>{statusTextMap[status]}</div>
       {(status === CheckResult.PASS || status === CheckResult.BLOCKED) && (
         <>
-          <div>
+          <div className="max-w-full truncate">
             位置: {ipInfo.country} ({ipInfo.ip})
           </div>
         </>
       )}
       {status === CheckResult.BLOCKED && blockRule && (
         <>
-          <div>规发生大范德萨范德萨发则: {blockRule.urlRegex}</div>
+          <div>违反规则: {blockRule.urlRegex}</div>
         </>
       )}
     </section>

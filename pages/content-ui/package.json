@@ -1,6 +1,6 @@
 {
   "name": "@extension/content-ui",
-  "version": "0.4.3",
+  "version": "0.0.1",
   "description": "chrome extension - content ui",
   "type": "module",
   "private": true,
@@ -23,10 +23,11 @@
   },
   "dependencies": {
     "@extension/env": "workspace:*",
+    "@extension/i18n": "workspace:*",
     "@extension/shared": "workspace:*",
     "@extension/storage": "workspace:*",
     "@extension/ui": "workspace:*",
-    "@extension/i18n": "workspace:*"
+    "react-draggable": "^4.4.6"
   },
   "devDependencies": {
     "@extension/hmr": "workspace:*",

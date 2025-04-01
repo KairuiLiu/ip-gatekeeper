@@ -10,7 +10,7 @@ export default withPageConfig({
       '@src': srcDir,
     },
   },
-  publicDir: resolve(rootDir, 'public'),
+  // publicDir: resolve(rootDir, 'public'),
   build: {
     outDir: resolve(rootDir, '..', '..', 'dist', 'redirect'),
   },

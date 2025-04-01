@@ -18,11 +18,14 @@ import {
   CheckStatusIcon,
   CheckInfoCard,
   CardDescription,
+  icons,
 } from '@extension/ui';
 import { t } from '@extension/i18n';
 import type { Rule } from '@extension/storage';
 import { ipInfoStorage, ruleStorage } from '@extension/storage';
 import { useEffect, useRef, useState } from 'react';
+
+const { SquareArrowOutUpRight } = icons;
 
 const Redirect = () => {
   const loadTime = useRef(Date.now());
@@ -47,10 +50,6 @@ const Redirect = () => {
     chrome.runtime.sendMessage({ action: BackgroundRequestAction.REFRESH_IP_INFO });
   };
 
-  const handleClose = () => {
-    window.close();
-  };
-
   const goOption = () => {
     chrome.runtime.openOptionsPage();
   };
@@ -73,33 +72,35 @@ const Redirect = () => {
 
   return (
     <main className="w-screen h-screen flex items-center justify-evenly">
-      <Card className="w-[350px]  ">
+      <Card className="min-w-[350px] max-w-full w-1/4 ">
         <CardHeader>
-          <CardTitle>{t('extensionName')} 安全检查</CardTitle>
-          <CardDescription>请求 {targetLocation} 触发安全检查</CardDescription>
+          <CardTitle className="text-lg">{t('extensionName')} IP 检查</CardTitle>
+          <CardDescription className="text-sm">请求 {new URL(targetLocation).hostname} 触发 IP 检查</CardDescription>
         </CardHeader>
-        <CardContent className="flex gap">
-          <CheckStatusIcon status={checkResult} showBackground={true} />
-          <CheckInfoCard status={checkResult} ipInfo={ipInfo} blockRule={blockRule} />
+        <CardContent className="flex gap-2 items-center w-full px-8">
+          <div className="w-1/3 shrink-0 flex justify-center">
+            <CheckStatusIcon status={checkResult} showBackground={true} />
+          </div>
+          <div className="w-2/3 shrink-0 flex justify-start ">
+            <CheckInfoCard status={checkResult} ipInfo={ipInfo} blockRule={blockRule} />
+          </div>
         </CardContent>
         <CardFooter className="flex justify-around">
           {checkResult === CheckResult.PASS && <Button onClick={handleVisit}>访问页面</Button>}
-          {(checkResult === CheckResult.FAILED || checkResult === CheckResult.BLOCKED) && (
-            <Button onClick={handleClose}>关闭窗口</Button>
+          {checkResult !== CheckResult.PASS && (
+            <Button variant="destructive" onClick={handleVisit}>
+              无视风险, 访问页面
+            </Button>
           )}
           {checkResult !== CheckResult.PENDING && (
             <Button variant="secondary" onClick={requestCheckIpInfo}>
               重新检查
             </Button>
           )}
-          {checkResult !== CheckResult.PASS && (
-            <Button variant="destructive" onClick={handleVisit}>
-              无视风险, 访问页面
-            </Button>
-          )}
         </CardFooter>
-        <Button variant="link" onClick={goOption}>
+        <Button variant="link" onClick={goOption} className="p-0 text-muted-foreground font-light gap-1">
           配置策略
+          <SquareArrowOutUpRight size={12} className="text-muted-foreground" />
         </Button>
       </Card>
     </main>

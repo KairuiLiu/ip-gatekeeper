@@ -13,6 +13,7 @@ async function updateRules() {
   try {
     const oldRules = await chrome.declarativeNetRequest.getDynamicRules();
     const removeRuleIds = oldRules.map(rule => rule.id);
+    const offset = Math.max(...removeRuleIds, 0);
 
     const newRules = (await ruleStorage.get()) || [];
     const addRules = newRules
@@ -20,7 +21,7 @@ async function updateRules() {
       .map(
         (rule, index) =>
           ({
-            id: index + 1,
+            id: offset + index + 1,
             priority: 1,
             action: {
               type: chrome.declarativeNetRequest.RuleActionType.REDIRECT,
@@ -39,9 +40,8 @@ async function updateRules() {
       removeRuleIds,
       addRules,
     });
-    console.log('已启用拦截规则');
-  } catch (error) {
-    console.error('启用拦截规则失败:', error);
+  } catch {
+    //
   }
 }
 
@@ -58,13 +58,6 @@ chrome.runtime.onInstalled.addListener(async () => {
       enable: true,
       urlRegex: '^http[s]://claude.ai',
       countryCodeRegex: 'JP',
-      checkBeforeVisit: true,
-      checkOnVisit: true,
-    },
-    {
-      enable: true,
-      urlRegex: '^http[s]://chatgpt.com',
-      countryCodeRegex: '^(?!CN$).*$',
       checkBeforeVisit: true,
       checkOnVisit: true,
     },

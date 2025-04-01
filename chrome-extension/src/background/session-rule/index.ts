@@ -28,9 +28,10 @@ async function addSessionRules(rules: chrome.declarativeNetRequest.Rule[]) {
   const oldRules = await chrome.declarativeNetRequest.getSessionRules();
 
   const removeRuleIds = oldRules.map(rule => rule.id);
+  const offset = Math.max(...oldRules.map(rule => rule.id), 0); // 防报错...
   const addRules = [...oldRules, ...rules].map((it, index) => ({
     ...it,
-    id: index + 1,
+    id: offset + index + 1,
   }));
 
   await chrome.declarativeNetRequest.updateSessionRules({
@@ -59,8 +60,8 @@ chrome.tabs.onRemoved.addListener(async () => {
         removeRuleIds,
       });
     }
-  } catch (error) {
-    console.error('处理标签页变化时出错:', error);
+  } catch {
+    //
   }
 });
 

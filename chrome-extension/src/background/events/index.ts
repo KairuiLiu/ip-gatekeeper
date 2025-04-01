@@ -4,7 +4,6 @@ import { handleAddSessionAccessRule } from '../session-rule';
 import { BackgroundRequestAction } from '@extension/shared';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log('onMessage', request);
   if (request.action === BackgroundRequestAction.REFRESH_IP_INFO) {
     refreshIpInfo().then(sendResponse);
     return true;
