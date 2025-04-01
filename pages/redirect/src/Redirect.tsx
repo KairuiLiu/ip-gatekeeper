@@ -52,7 +52,7 @@ const Redirect = () => {
   };
 
   const goOption = () => {
-    window.open(chrome.runtime.getURL('/options/index.html'), '_blank');
+    chrome.runtime.openOptionsPage();
   };
 
   const handleVisit = async () => {
