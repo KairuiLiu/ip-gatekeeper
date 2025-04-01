@@ -52,9 +52,12 @@ const Redirect = () => {
   };
 
   const handleVisit = async () => {
+    const matchedRules = rules.filter(
+      rule => rule.enable && rule.checkBeforeVisit && targetLocation.match(rule.urlRegex),
+    );
     const response = await chrome.runtime.sendMessage({
       action: BackgroundRequestAction.ADD_SESSION_ACCESS_RULE,
-      rules: [blockRule],
+      rules: matchedRules,
     });
     if (response) location.href = targetLocation;
   };
@@ -76,7 +79,7 @@ const Redirect = () => {
           <CheckInfoCard status={checkResult} ipInfo={ipInfo} blockRule={blockRule} />
         </CardContent>
         <CardFooter className="flex justify-around">
-          {checkResult === CheckResult.PASS && <Button>访问页面</Button>}
+          {checkResult === CheckResult.PASS && <Button onClick={handleVisit}>访问页面</Button>}
           {(checkResult === CheckResult.FAILED || checkResult === CheckResult.BLOCKED) && (
             <Button onClick={handleClose}>关闭窗口</Button>
           )}

@@ -15,8 +15,8 @@ export type Rules = Rule[];
 
 type RuleStorage = BaseStorage<Rules> & {
   toggleEnabled: (id: string) => Promise<boolean>;
-  addRule: (rule: Omit<Rule, 'id'>) => Promise<boolean>;
-  removeRule: (id: string) => Promise<boolean>;
+  addRules: (rules: Omit<Rule, 'id'>[]) => Promise<boolean>;
+  removeRules: (ids: string[]) => Promise<boolean>;
   updateRule: (id: string, rule: Rule) => Promise<boolean>;
   clearRules: () => Promise<boolean>;
 };
@@ -38,13 +38,13 @@ export const ruleStorage: RuleStorage = {
     });
     return true;
   },
-  addRule: async rule => {
-    const newRule = { ...rule, id: v4() };
-    await storage.set(rules => [...rules, newRule]);
+  addRules: async rules => {
+    const newRules = rules.map(it => ({ ...it, id: v4() }));
+    await storage.set(rules => [...rules, ...newRules]);
     return true;
   },
-  removeRule: async id => {
-    await storage.set(rules => rules.filter(rule => rule.id !== id));
+  removeRules: async ids => {
+    await storage.set(rules => rules.filter(rule => !ids.includes(rule.id)));
     return true;
   },
   updateRule: async (id, rule) => {

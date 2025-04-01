@@ -53,13 +53,22 @@ ruleStorage.subscribe(handleRuleChanged);
 
 chrome.runtime.onInstalled.addListener(async () => {
   await ruleStorage.clearRules();
-  await ruleStorage.addRule({
-    enable: true,
-    urlRegex: '^http[s]://claude.ai',
-    countryCodeRegex: 'JP',
-    checkBeforeVisit: true,
-    checkOnVisit: true,
-  });
+  await ruleStorage.addRules([
+    {
+      enable: true,
+      urlRegex: '^http[s]://claude.ai',
+      countryCodeRegex: 'JP',
+      checkBeforeVisit: true,
+      checkOnVisit: true,
+    },
+    {
+      enable: true,
+      urlRegex: '^http[s]://chat.openai.com',
+      countryCodeRegex: '^(?!CN$).*$',
+      checkBeforeVisit: true,
+      checkOnVisit: true,
+    },
+  ]);
 });
 
 export default '__KEEP__';

@@ -26,3 +26,13 @@ async function fetchIpInfo() {
   const res = await fetchWithTimeout(`https://api.country.is/`, {}, 5000);
   return await res.json();
 }
+
+async function bgCheckTabUrls() {
+  const tabs = await chrome.tabs.query({});
+  const rules = ruleStorage.getSnapshot() || [];
+  const needCheck = tabs.some(tab => rules.some(it => it.enable && it.checkOnVisit && tab.url?.match(it.urlRegex)));
+  if (needCheck) await refreshIpInfo();
+  setTimeout(bgCheckTabUrls, 5000);
+}
+
+bgCheckTabUrls();

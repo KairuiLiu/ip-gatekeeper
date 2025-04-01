@@ -21,6 +21,6 @@ export function checkIpInfo(url: string, startTime: number, ipInfo: IpInfo, rule
 
 export function getBlockRule(url: string, ipInfo: IpInfo, rules: Rules) {
   return rules.find(rule => {
-    return rule.checkBeforeVisit && url.match(rule.urlRegex) && ipInfo.country?.match(rule.countryCodeRegex);
+    return rule.checkBeforeVisit && url.match(rule.urlRegex) && !ipInfo.country?.match(rule.countryCodeRegex);
   });
 }
