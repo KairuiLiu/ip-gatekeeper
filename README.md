@@ -274,5 +274,5 @@ TODO
 - icon
 - i18n
 - before check UI
-- runtime check
+- runtime check UI
 - popup page

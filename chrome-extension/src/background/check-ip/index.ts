@@ -1,5 +1,5 @@
 import { fetchWithTimeout } from '@extension/shared';
-import { IpInfoStatue, ipInfoStorage } from '@extension/storage';
+import { IpInfoStatue, ipInfoStorage, ruleStorage } from '@extension/storage';
 
 export async function refreshIpInfo() {
   await ipInfoStorage.setIpInfo({

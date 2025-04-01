@@ -63,7 +63,7 @@ chrome.runtime.onInstalled.addListener(async () => {
     },
     {
       enable: true,
-      urlRegex: '^http[s]://chat.openai.com',
+      urlRegex: '^http[s]://chatgpt.com',
       countryCodeRegex: '^(?!CN$).*$',
       checkBeforeVisit: true,
       checkOnVisit: true,
