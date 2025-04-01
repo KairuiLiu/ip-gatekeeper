@@ -51,6 +51,10 @@ const Redirect = () => {
     window.close();
   };
 
+  const goOption = () => {
+    window.open(chrome.runtime.getURL('/options/index.html'), '_blank');
+  };
+
   const handleVisit = async () => {
     const matchedRules = rules.filter(
       rule => rule.enable && rule.checkBeforeVisit && targetLocation.match(rule.urlRegex),
@@ -94,6 +98,9 @@ const Redirect = () => {
             </Button>
           )}
         </CardFooter>
+        <Button variant="link" onClick={goOption}>
+          配置策略
+        </Button>
       </Card>
     </main>
   );
