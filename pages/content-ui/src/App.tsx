@@ -1,5 +1,5 @@
 import { BackgroundRequestAction, checkIpInfo, CheckResult, useStorage } from '@extension/shared';
-import { Button, Card, CardContent, CardFooter, CheckInfoCard, cn, icons } from '@extension/ui';
+import { Button, Card, CardContent, CardFooter, cn, icons } from '@extension/ui';
 import type { IpInfo } from '../../../packages/storage/lib';
 import { ipInfoStorage, ruleStorage } from '../../../packages/storage/lib';
 import type { RefObject } from 'react';
@@ -14,6 +14,13 @@ const containerColorMap = {
   [CheckResult.BLOCKED]: 'bg-red-50/90 text-red-500',
   [CheckResult.PENDING]: 'bg-slate-50/90 text-slate-500',
   [CheckResult.FAILED]: 'bg-orange-50/90 text-orange-500',
+};
+
+const statusTextMap = {
+  [CheckResult.PENDING]: t('ipStatusPending'),
+  [CheckResult.PASS]: t('ipStatusPass'),
+  [CheckResult.BLOCKED]: t('ipStatusBlock'),
+  [CheckResult.FAILED]: t('ipStatusFailed'),
 };
 
 function closeWindow() {
@@ -105,7 +112,16 @@ export default function App() {
         <div ref={nodeRef} className="absolute z-[2147483647] select-none pointer-events-auto">
           <Card className={cn('w-80 p-4', containerColorMap[lastResult.result])}>
             <CardContent className="min-h-14 p-0 cursor-move">
-              <CheckInfoCard status={lastResult.result} ipInfo={lastResult.info} />
+              <section className="flex flex-col gap-2 item-left text-left w-full">
+                <div>{statusTextMap[lastResult.result]}</div>
+                {(lastResult.result === CheckResult.PASS || lastResult.result === CheckResult.BLOCKED) && (
+                  <>
+                    <div className="max-w-full truncate">
+                      {t('location')}: {lastResult.info.country} ({lastResult.info.ip})
+                    </div>
+                  </>
+                )}
+              </section>
             </CardContent>
             <CardFooter className="p-0">
               {(lastResult.result === CheckResult.BLOCKED || lastResult.result === CheckResult.FAILED) && (

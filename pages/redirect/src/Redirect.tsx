@@ -16,7 +16,6 @@ import {
   CardHeader,
   CardTitle,
   CheckStatusIcon,
-  CheckInfoCard,
   CardDescription,
   icons,
 } from '@extension/ui';
@@ -26,6 +25,13 @@ import { ipInfoStorage, ruleStorage } from '@extension/storage';
 import { useEffect, useRef, useState } from 'react';
 
 const { SquareArrowOutUpRight } = icons;
+
+const statusTextMap = {
+  [CheckResult.PENDING]: t('ipStatusPending'),
+  [CheckResult.PASS]: t('ipStatusPass'),
+  [CheckResult.BLOCKED]: t('ipStatusBlock'),
+  [CheckResult.FAILED]: t('ipStatusFailed'),
+};
 
 const Redirect = () => {
   const loadTime = useRef(Date.now());
@@ -84,7 +90,21 @@ const Redirect = () => {
             <CheckStatusIcon status={checkResult} showBackground={true} />
           </div>
           <div className="w-2/3 shrink-0 flex justify-start ">
-            <CheckInfoCard status={checkResult} ipInfo={ipInfo} blockRule={blockRule} />
+            <section className="flex flex-col gap-2 item-left text-left w-full">
+              <div>{statusTextMap[checkResult]}</div>
+              {(checkResult === CheckResult.PASS || checkResult === CheckResult.BLOCKED) && (
+                <>
+                  <div className="max-w-full truncate">
+                    {t('location')}: {ipInfo.country} ({ipInfo.ip})
+                  </div>
+                </>
+              )}
+              {checkResult === CheckResult.BLOCKED && blockRule && (
+                <>
+                  <div>{t('violateRule', blockRule.urlRegex)}</div>
+                </>
+              )}
+            </section>
           </div>
         </CardContent>
         <CardFooter className="flex justify-around">
