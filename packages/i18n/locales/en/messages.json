@@ -1,30 +1,161 @@
 {
   "extensionDescription": {
     "description": "Extension description",
-    "message": "Chrome extension boilerplate developed with Vite, React and Typescript"
+    "message": "Check your IP address before visiting sensitive websites to protect the security of your account."
   },
   "extensionName": {
     "description": "Extension name",
     "message": "IP Gatekeeper"
   },
-  "toggleTheme": {
-    "message": "Toggle theme"
-  },
-  "loading": {
-    "message": "Loading..."
-  },
-  "greeting": {
-    "description": "Greeting message",
-    "message": "Hello, My name is $NAME$",
+  "currentRulesCount": {
+    "message": "Currently $COUNT$ rules enabled.",
     "placeholders": {
-      "name": {
+      "count": {
         "content": "$1",
-        "example": "John Doe"
+        "example": "5"
       }
     }
   },
-  "hello": {
-    "description": "Placeholder example",
-    "message": "Hello $1"
+  "clickToConfigure": {
+    "message": "Click to configure"
+  },
+  "ipCheck": {
+    "message": "IP Gatekeeper Checking"
+  },
+  "requestTriggerCheck": {
+    "message": "Request to $HOSTNAME$ triggered IP check",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "openai.com"
+      }
+    }
+  },
+  "visitPage": {
+    "message": "Visit page"
+  },
+  "ignoreRiskVisit": {
+    "message": "Ignore risk, visit page"
+  },
+  "recheckIp": {
+    "message": "Recheck"
+  },
+  "closePage": {
+    "message": "Close Page"
+  },
+  "configurePolicy": {
+    "message": "Configure policy"
+  },
+  "runtimeCheckInterval": {
+    "message": "Runtime check interval (s)"
+  },
+  "status": {
+    "message": "Status: $STATUS$",
+    "placeholders": {
+      "status": {
+        "content": "$1",
+        "example": "Passed"
+      }
+    }
+  },
+  "ip": {
+    "message": "IP: $IP$",
+    "placeholders": {
+      "ip": {
+        "content": "$1",
+        "example": "192.168.1.1"
+      }
+    }
+  },
+  "location": {
+    "message": "Location: $COUNTRY$",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "US"
+      }
+    }
+  },
+  "locationWithIp": {
+    "message": "Location: $COUNTRY$ ($IP$)",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "US"
+      },
+      "ip": {
+        "content": "$2",
+        "example": "192.168.1.1"
+      }
+    }
+  },
+  "updateTime": {
+    "message": "Update time: $TIME$",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2023-04-02 12:34:56"
+      }
+    }
+  },
+  "configureMatchRules": {
+    "message": "Configure Matching Rules"
+  },
+  "addNewRule": {
+    "message": "Add new"
+  },
+  "save": {
+    "message": "Save"
+  },
+  "reset": {
+    "message": "Reset"
+  },
+  "enableRule": {
+    "message": "Enable rule"
+  },
+  "urlMatchRule": {
+    "message": "URL match rule"
+  },
+  "regionMatchRule": {
+    "message": "Region match rule"
+  },
+  "checkWhenAccess": {
+    "message": "Check on access"
+  },
+  "checkWhenRuntime": {
+    "message": "Runtime check"
+  },
+  "actions": {
+    "message": "Actions"
+  },
+  "reference": {
+    "message": "Reference"
+  },
+  "onlyJapanIp": {
+    "message": "- Only accessible from JP IP: ^JP$"
+  },
+  "anyIpExceptChina": {
+    "message": "- Accessible from any IP except CN: ^(?!CN$).*$"
+  },
+  "violateRule": {
+    "message": "Rule violated: $RULE$",
+    "placeholders": {
+      "rule": {
+        "content": "$1",
+        "example": ".*\\.openai\\.com"
+      }
+    }
+  },
+  "ipStatusPass": {
+    "message": "Check passed"
+  },
+  "ipStatusFailed": {
+    "message": "Check failed"
+  },
+  "ipStatusPending": {
+    "message": "Checking..."
+  },
+  "ipStatusBlock": {
+    "message": "Access denied"
   }
 }

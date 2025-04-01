@@ -1,5 +1,5 @@
 import type { SUPPORTED_LANGUAGES } from './consts.js';
-import type enMessage from '../locales/en/messages.json';
+import type cnMessage from '../locales/zh_CN/messages.json';
 
 export type SupportedLanguagesKeysType = keyof typeof SUPPORTED_LANGUAGES;
 export type SupportedLanguagesWithoutRegionKeysType = Exclude<SupportedLanguagesKeysType, `${string}_${string}`>;
@@ -8,5 +8,5 @@ export type I18nValueType = {
   placeholders?: Record<string, { content?: string; example?: string }>;
 };
 
-export type MessageKey = keyof typeof enMessage;
-export type LocalesJSONType = typeof enMessage;
+export type MessageKey = keyof typeof cnMessage;
+export type LocalesJSONType = typeof cnMessage;

@@ -1,6 +1,7 @@
 import { useStorage, withErrorBoundary, withSuspense } from '@extension/shared';
 import { ruleStorage } from '@extension/storage';
 import { Button } from '../../../packages/ui/dist';
+import { t } from '@extension/i18n';
 
 function goOptions() {
   chrome.runtime.openOptionsPage();
@@ -15,10 +16,9 @@ const Popup = () => {
       <h1 className="text-lg">IP GateKeeper</h1>
       <img src={chrome.runtime.getURL('popup/logo_512.png')} alt="logo" className="size-36" />
       <p>
-        当前开启了 {enabledRules.length} 条规则.
+        {t('currentRulesCount', enabledRules.length)}
         <Button onClick={goOptions} variant="link">
-          {' '}
-          点击配置{' '}
+          {t('clickToConfigure')}
         </Button>
       </p>
     </div>

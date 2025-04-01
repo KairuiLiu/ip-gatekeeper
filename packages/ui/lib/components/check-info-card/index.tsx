@@ -1,6 +1,7 @@
 import { CheckResult } from '@extension/shared';
 import type { IpInfo, Rule } from '@extension/storage';
 import type { FC } from 'react';
+import { t } from '@extension/i18n';
 
 type Props = {
   status: CheckResult;
@@ -9,10 +10,10 @@ type Props = {
 };
 
 const statusTextMap = {
-  [CheckResult.PENDING]: '检查中...',
-  [CheckResult.PASS]: '检查通过',
-  [CheckResult.BLOCKED]: '禁止访问',
-  [CheckResult.FAILED]: '检查失败',
+  [CheckResult.PENDING]: t('ipStatusPending'),
+  [CheckResult.PASS]: t('ipStatusPass'),
+  [CheckResult.BLOCKED]: t('ipStatusBlock'),
+  [CheckResult.FAILED]: t('ipStatusFailed'),
 };
 
 export const CheckInfoCard: FC<Props> = ({ status, ipInfo, blockRule }) => {
@@ -22,13 +23,13 @@ export const CheckInfoCard: FC<Props> = ({ status, ipInfo, blockRule }) => {
       {(status === CheckResult.PASS || status === CheckResult.BLOCKED) && (
         <>
           <div className="max-w-full truncate">
-            位置: {ipInfo.country} ({ipInfo.ip})
+            {t('location')}: {ipInfo.country} ({ipInfo.ip})
           </div>
         </>
       )}
       {status === CheckResult.BLOCKED && blockRule && (
         <>
-          <div>违反规则: {blockRule.urlRegex}</div>
+          <div>{t('violateRule', blockRule.urlRegex)}</div>
         </>
       )}
     </section>

@@ -18,6 +18,7 @@ import type { Rule } from '../../../packages/storage/lib';
 import { ruleStorage } from '../../../packages/storage/lib';
 const { Trash2, Info } = icons;
 import { v4 } from 'uuid';
+import { t } from '@extension/i18n';
 
 export const RulesTable = () => {
   const [rules, setRules] = useState(ruleStorage.getSnapshot() || []);
@@ -61,30 +62,26 @@ export const RulesTable = () => {
         <Table>
           <TableHeader className="sticky top-0 bg-background z-10">
             <TableRow>
-              <TableHead className="text-center">启用规则</TableHead>
-              <TableHead className="text-center w-[200px]">URL匹配规则</TableHead>
+              <TableHead className="text-center">{t('enableRule')}</TableHead>
+              <TableHead className="text-center w-[200px]">{t('urlMatchRule')}</TableHead>
               <TableHead className="text-center w-[200px]">
                 <div className="flex items-center justify-center gap-1">
-                  地区匹配规则
+                  {t('regionMatchRule')}
                   <HoverCard>
                     <HoverCardTrigger>
                       <Info size={16} />
                     </HoverCardTrigger>
                     <HoverCardContent side="right" className="text-left w-fit">
-                      <p>参考</p>
-                      <p>
-                        - 仅当 IP 为 JP 时可访问: <code>^JP$</code>
-                      </p>
-                      <p>
-                        - 只要 IP 不是 CN 均可访问: <code>^(?!CN$).*$</code>
-                      </p>
+                      <p>{t('reference')}</p>
+                      <p>{t('onlyJapanIp')}</p>
+                      <p>{t('anyIpExceptChina')}</p>
                     </HoverCardContent>
                   </HoverCard>
                 </div>
               </TableHead>
-              <TableHead className="text-center">访问时检查</TableHead>
-              <TableHead className="text-center">运行时检查</TableHead>
-              <TableHead className="text-center">操作</TableHead>
+              <TableHead className="text-center">{t('checkWhenAccess')}</TableHead>
+              <TableHead className="text-center">{t('checkWhenRuntime')}</TableHead>
+              <TableHead className="text-center">{t('actions')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -144,15 +141,15 @@ export const RulesTable = () => {
       <section className="w-full flex justify-between mt-4 ">
         <div>
           <Button onClick={addRule} variant="outline">
-            新增一条
+            {t('addNewRule')}
           </Button>
         </div>
         <div className="flex gap-2">
           <Button disabled={!readySaving} onClick={save}>
-            保存
+            {t('save')}
           </Button>
           <Button onClick={reset} variant="outline">
-            重置
+            {t('reset')}
           </Button>
         </div>
       </section>

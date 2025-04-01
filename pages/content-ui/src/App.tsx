@@ -5,6 +5,7 @@ import { ipInfoStorage, ruleStorage } from '../../../packages/storage/lib';
 import type { RefObject } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
+import { t } from '@extension/i18n';
 
 const { Loader2 } = icons;
 
@@ -35,10 +36,10 @@ export default function App() {
     result: checkResult,
     info: ipInfo,
   });
-  const [loading, setLoading] = useState(false);
+
+  const loading = checkResult === CheckResult.PENDING;
 
   function recheck() {
-    setLoading(true);
     chrome.runtime.sendMessage({ action: BackgroundRequestAction.REFRESH_IP_INFO });
   }
 
@@ -87,12 +88,6 @@ export default function App() {
     });
   }, [checkResult, ipInfo]);
 
-  useEffect(() => {
-    if (checkResult !== CheckResult.PENDING) {
-      setLoading(false);
-    }
-  }, [checkResult]);
-
   if (!show) return null;
 
   return (
@@ -117,7 +112,7 @@ export default function App() {
                 <div className="pt-4 flex items-center gap-2">
                   {lastResult.result === CheckResult.BLOCKED && (
                     <Button onClick={closeWindow} variant="destructive" className="cursor-pointer">
-                      关闭页面
+                      {t('closePage')}
                     </Button>
                   )}
                   <Button
@@ -125,7 +120,7 @@ export default function App() {
                     variant="outline"
                     className="bg-slate-50/20 text-slate-400 border-slate-400 hover:bg-slate-150/40 hover:text-slate-400 hover:border-slate-400 cursor-pointer">
                     {loading && <Loader2 className="animate-spin" />}
-                    重新检查
+                    {t('recheckIp')}
                   </Button>
                 </div>
               )}

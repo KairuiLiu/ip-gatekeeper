@@ -1,0 +1,134 @@
+{
+  "extensionDescription": {
+    "description": "扩展描述",
+    "message": "在访问敏感网站前检查IP地址, 保护你的账号安全"
+  },
+  "extensionName": {
+    "description": "扩展名称",
+    "message": "IP守卫"
+  },
+  "currentRulesCount": {
+    "message": "当前开启了 $COUNT$ 条规则.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "clickToConfigure": {
+    "message": "点击配置"
+  },
+  "ipCheck": {
+    "message": "IP 守卫检查中"
+  },
+  "requestTriggerCheck": {
+    "message": "请求 $HOSTNAME$ 触发 IP 检查",
+    "placeholders": {
+      "hostname": {
+        "content": "$1",
+        "example": "openai.com"
+      }
+    }
+  },
+  "visitPage": {
+    "message": "访问页面"
+  },
+  "ignoreRiskVisit": {
+    "message": "无视风险, 访问页面"
+  },
+  "recheckIp": {
+    "message": "重新检查"
+  },
+  "closePage": {
+    "message": "关闭页面"
+  },
+  "configurePolicy": {
+    "message": "配置策略"
+  },
+  "runtimeCheckInterval": {
+    "message": "运行时检查间隔(s)"
+  },
+  "status": {
+    "message": "状态"
+  },
+  "location": {
+    "message": "位置"
+  },
+  "locationWithIp": {
+    "message": "位置: $COUNTRY$ ($IP$)",
+    "placeholders": {
+      "country": {
+        "content": "$1",
+        "example": "US"
+      },
+      "ip": {
+        "content": "$2",
+        "example": "192.168.1.1"
+      }
+    }
+  },
+  "updateTime": {
+    "message": "更新时间"
+  },
+  "configureMatchRules": {
+    "message": "配置匹配规则"
+  },
+  "addNewRule": {
+    "message": "新增一条"
+  },
+  "save": {
+    "message": "保存"
+  },
+  "reset": {
+    "message": "重置"
+  },
+  "enableRule": {
+    "message": "启用规则"
+  },
+  "urlMatchRule": {
+    "message": "URL匹配正则"
+  },
+  "regionMatchRule": {
+    "message": "地区匹配正则"
+  },
+  "checkWhenAccess": {
+    "message": "访问时检查"
+  },
+  "checkWhenRuntime": {
+    "message": "运行时检查"
+  },
+  "actions": {
+    "message": "操作"
+  },
+  "reference": {
+    "message": "参考"
+  },
+  "onlyJapanIp": {
+    "message": "- 仅当 IP 为 JP 时可访问: ^JP$"
+  },
+  "anyIpExceptChina": {
+    "message": "- 只要 IP 不是 CN 均可访问: ^(?!CN$).*$"
+  },
+  "violateRule": {
+    "message": "违反规则: $RULE$",
+    "placeholders": {
+      "rule": {
+        "content": "$1",
+        "example": ".*\\.openai\\.com"
+      }
+    }
+  },
+  "ipStatusPass": {
+    "message": "检查通过"
+  },
+  "ipStatusFailed": {
+    "message": "检查失败"
+  },
+  "ipStatusPending": {
+    "message": "检查中..."
+  },
+  "ipStatusBlock": {
+    "message": "禁止访问"
+  }
+}

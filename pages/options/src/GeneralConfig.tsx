@@ -26,7 +26,7 @@ export const GeneralConfig = () => {
             name="checkInterval"
             render={() => (
               <FormItem>
-                <FormLabel>运行时检查间隔(s)</FormLabel>
+                <FormLabel>${'runtimeCheckInterval'}</FormLabel>
                 <FormControl>
                   <Input value={5} min={1} type="number" />
                 </FormControl>

@@ -74,8 +74,10 @@ const Redirect = () => {
     <main className="w-screen h-screen flex items-center justify-evenly">
       <Card className="min-w-[350px] max-w-full w-1/4 ">
         <CardHeader>
-          <CardTitle className="text-lg">{t('extensionName')} IP 检查</CardTitle>
-          <CardDescription className="text-sm">请求 {new URL(targetLocation).hostname} 触发 IP 检查</CardDescription>
+          <CardTitle className="text-lg">{t('ipCheck')}</CardTitle>
+          <CardDescription className="text-sm">
+            {t('requestTriggerCheck', new URL(targetLocation).hostname)}
+          </CardDescription>
         </CardHeader>
         <CardContent className="flex gap-2 items-center w-full px-8">
           <div className="w-1/3 shrink-0 flex justify-center">
@@ -86,20 +88,20 @@ const Redirect = () => {
           </div>
         </CardContent>
         <CardFooter className="flex justify-around">
-          {checkResult === CheckResult.PASS && <Button onClick={handleVisit}>访问页面</Button>}
+          {checkResult === CheckResult.PASS && <Button onClick={handleVisit}>{t('visitPage')}</Button>}
           {checkResult !== CheckResult.PASS && (
             <Button variant="destructive" onClick={handleVisit}>
-              无视风险, 访问页面
+              {t('ignoreRiskVisit')}
             </Button>
           )}
           {checkResult !== CheckResult.PENDING && (
             <Button variant="secondary" onClick={requestCheckIpInfo}>
-              重新检查
+              {t('recheckIp')}
             </Button>
           )}
         </CardFooter>
         <Button variant="link" onClick={goOption} className="p-0 text-muted-foreground font-light gap-1">
-          配置策略
+          {t('configurePolicy')}
           <SquareArrowOutUpRight size={12} className="text-muted-foreground" />
         </Button>
       </Card>
