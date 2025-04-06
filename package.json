@@ -1,6 +1,6 @@
 {
   "name": "ip-gatekeeper",
-  "version": "0.0.1",
+  "version": "0.1",
   "description": "A privacy-focused browser extension that protects your online accounts by monitoring IP geolocation before accessing sensitive websites.",
   "license": "MIT",
   "private": true,
