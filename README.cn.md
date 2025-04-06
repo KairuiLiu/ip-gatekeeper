@@ -11,6 +11,10 @@
 - 🛡️ **风险预警系统**: 访问前检测到风险 IP 时禁止访问目标站点, 防止误操作导致 IP 信息泄露
 - 👁️ **直观状态监控**: 运行时浮窗显示即时 IP 信息, 随时掌握网络状态
 
+## 安装
+
+- 从 [chrome Web Store](https://chromewebstore.google.com/detail/ip%E5%AE%88%E5%8D%AB/epcicgnmhkepgenjjmkdelmkjacbdicc?hl=zh-CN&utm_source=ext_sidebar) 安装
+- 从 [GitHub Release](https://github.com/KairuiLiu/ip-gatekeeper/releases) 手动安装
 
 ## 使用方法
 
