@@ -132,10 +132,10 @@
     "message": "Reference"
   },
   "onlyJapanIp": {
-    "message": "- Only accessible from JP IP: ^JP$"
+    "message": "- Only accessible from JP IP"
   },
   "anyIpExceptChina": {
-    "message": "- Accessible from any IP except CN: ^(?!CN$).*$"
+    "message": "- Accessible from any IP except CN"
   },
   "violateRule": {
     "message": "Rule violated: $RULE$",

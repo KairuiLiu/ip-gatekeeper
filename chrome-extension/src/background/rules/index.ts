@@ -56,7 +56,7 @@ chrome.runtime.onInstalled.addListener(async () => {
   await ruleStorage.addRules([
     {
       enable: true,
-      urlRegex: '^http[s]://claude.ai',
+      urlRegex: '^http[s]://claude\\.ai',
       countryCodeRegex: 'JP',
       checkBeforeVisit: true,
       checkOnVisit: true,

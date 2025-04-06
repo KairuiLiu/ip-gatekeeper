@@ -105,10 +105,10 @@
     "message": "参考"
   },
   "onlyJapanIp": {
-    "message": "- 仅当 IP 为 JP 时可访问: ^JP$"
+    "message": "- 仅当 IP 为 JP 时可访问"
   },
   "anyIpExceptChina": {
-    "message": "- 只要 IP 不是 CN 均可访问: ^(?!CN$).*$"
+    "message": "- 只要 IP 不是 CN 均可访问"
   },
   "violateRule": {
     "message": "违反规则: $RULE$",

@@ -16,7 +16,7 @@ const Popup = () => {
       <h1 className="text-lg">{t('extensionName')}</h1>
       <img src={chrome.runtime.getURL('popup/logo_512.png')} alt="logo" className="size-36" />
       <p>
-        {t('currentRulesCount', enabledRules.length)}
+        {t('currentRulesCount', enabledRules.length.toString())}
         <Button onClick={goOptions} variant="link">
           {t('clickToConfigure')}
         </Button>

@@ -73,8 +73,12 @@ export const RulesTable = () => {
                     </HoverCardTrigger>
                     <HoverCardContent side="right" className="text-left w-fit">
                       <p>{t('reference')}</p>
-                      <p>{t('onlyJapanIp')}</p>
-                      <p>{t('anyIpExceptChina')}</p>
+                      <p>
+                        {t('onlyJapanIp')}:<code>^JP$</code>
+                      </p>
+                      <p>
+                        {t('anyIpExceptChina')}: <code>^(?!CN$).*$</code>
+                      </p>
                     </HoverCardContent>
                   </HoverCard>
                 </div>
